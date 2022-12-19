@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# IF using a DM, this file runs when it logs you into the GUI.
+# IF using startx/xinit, this file is sourced (in ./xinitrc)
+
+# set the screen's dpi
+xrandr --dpi 125
+# set background with `setbg' script
+#setbg void-chan &
+# use xresources colors/settings on startup
+xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!
+
+autostart="pipewire pipewire-pulse picom"
+
+for program in $autostart; do
+    pidof -s "$program" || "$program" &
+done >/dev/null 2>&1
+
+# ensure that xrdb finished running before moving to launching the WM/DE
+[ -n "$xrdbpid" ] && wait "$xrdbpid"

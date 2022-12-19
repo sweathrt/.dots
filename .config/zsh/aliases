@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# system
+alias poweroff="/usr/bin/sudo poweroff"
+alias shutdown="poweroff"
+alias reboot="/usr/bin/sudo reboot"
+
+# admin
+alias sudo="sudo -v && sudo "
+alias su="sudo su"
+
+# ls
+alias ls="ls -h --color"
+alias la="ls -la"
+
+# neovim
+alias vim="nvim"
+alias svim="sudo nvim"
+
+# wget
+alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
+
+# pacman
+alias pacman="sudo pacman"
+alias upgrade="yay -Syyu"
