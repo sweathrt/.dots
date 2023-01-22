@@ -14,5 +14,4 @@ else
 	. "$HOME/.xprofile"
 fi
 
-# small script not to actually close dwm but to restart it (see $HOME/.local/bin/restart_dwm)
-exec awesome
+exec bspwm 
