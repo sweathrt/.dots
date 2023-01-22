@@ -1,0 +1,10 @@
+#!/bin/bash
+
+orphans=$(sudo pacman -Qdtq)
+
+if [ -z "$orphans" ]; then
+	echo "No orphans found."
+else
+	printf "Orphans found:\n$(pacman -Qdtq)\n"
+	echo 'You can delete them with "pacman -Rns $(pacman -Qdtq)"'
+fi

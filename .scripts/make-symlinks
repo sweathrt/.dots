@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Create symlinks from the $HOME, $HOME/.config, $HOME/.local/src/, $HOME/.local/share to any desired dotfiles in $HOME/dotfiles/
+
+# Directories declaration
+dir=$HOME/.dots
+config_dir=$HOME/.dots/.config
+
+# Below is the list of files to be symlinked
+
+# $HOME files
+home_files=".zprofile .scripts"
+# $HOME/.config files
+config_files="aliases fontconfig kitty mpv neofetch picom user-dirs.dirs wireplumber x11 zsh"
+
+# Create symlinks from $HOME to $HOME/dotfiles
+for file in $home_files; do
+	[ -e $HOME/$file ] && rm -rf $HOME/$file
+	echo "Creating a symlink to $file in $HOME."
+	[ -e $dir/$file ] && ln -s $dir/$file $HOME/$file
+done
+
+# Create symlinks from $HOME/.config to $HOME/dotfiles/.config
+for file in $config_files; do
+	[ -e $HOME/.config/$file ] && rm -rf $HOME/.config/$file
+	echo "Creating a symlink to $file in $HOME/.config."
+	[ -e $config_dir/$file ] && ln -s $config_dir/$file $HOME/.config/$file
+done
