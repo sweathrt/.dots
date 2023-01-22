@@ -1,18 +1,23 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=$XDG_STATE_HOME/zsh/history
-HISTSIZE=1000
-SAVEHIST=1000
-unsetopt beep
-bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/sweathrt/.config/zsh/.zshrc'
-zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
+## ░▀▀█░█▀▀░█░█░█▀▄░█▀▀
+## ░▄▀░░▀▀█░█▀█░█▀▄░█░░
+## ░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀
+##
+## rxyhn's Z-Shell configuration
+## https://github.com/rxyhn
 
-autoload -Uz compinit promptinit
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
-# End of lines added by compinstall
+while read file
+do 
+  source "$ZDOTDIR/$file.zsh"
+done <<-EOF
+theme
+env
+aliases
+options
+EOF
 
-PROMPT='[%n@%m:%B%~%b]$ '
+#utility
+#plugins
+#keybinds
+#prompt
 
-[ -f $HOME/.config/aliases ] && source $HOME/.config/aliases
+# vim:ft=zsh:nowrap
