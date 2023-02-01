@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # wrappedhl - Launch Hyprland with a simple wrapper-script
 
@@ -6,7 +6,10 @@ cd ~
 
 # Export the required variables
 export _JAVA_AWT_WM_NONREPARENTING=1
+#export GDK_SCALE=2
 export XCURSOR_SIZE=24
+export GTK_THEME=Catppuccin-Mocha-Standard-Lavender-Dark
+export QT_QPA_PLATFORM="wayland;xcb"
 
 # Start Hyprland
 if [ -f "/usr/local/bin/Hyprland" ]; then

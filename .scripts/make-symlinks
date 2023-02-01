@@ -11,7 +11,7 @@ config_dir=$HOME/.dots/.config
 # $HOME files
 home_files=".zprofile .scripts"
 # $HOME/.config files
-config_files="aliases fontconfig kitty mpv neofetch picom user-dirs.dirs wireplumber x11 zsh"
+config_files="aliases dunst fontconfig hypr kitty mpv neofetch picom rofi user-dirs.dirs waybar wireplumber wlogout x11 zsh"
 
 # Create symlinks from $HOME to $HOME/dotfiles
 for file in $home_files; do
