@@ -1,0 +1,18 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    // "mode": "dock",
+    "exclusive": true,
+    "passtrough": false,
+    "gtk-layer-shell": true,
+    "include": [
+        "~/.config/waybar/modules.jsonc"
+    ],
+    "modules-left": [
+        "disk",
+        "cpu",
+        "memory"
+    ],
+    "modules-center": [],
+    "modules-right": []
+}
