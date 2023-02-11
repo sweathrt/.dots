@@ -9,10 +9,9 @@ while read file
 do 
   source "$ZDOTDIR/$file.zsh"
 done <<-EOF
-theme
-env
 aliases
 options
+theme
 EOF
 
 #utility
@@ -21,3 +20,4 @@ EOF
 #prompt
 
 # vim:ft=zsh:nowrap
+macchina

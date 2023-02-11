@@ -1,5 +1,3 @@
-#!/bin/zsh
-
 # system
 alias poweroff="/usr/bin/sudo poweroff"
 alias shutdown="poweroff"
@@ -14,11 +12,10 @@ alias l="ls -l"
 alias la="ls -a"
 alias lla="ls -la"
 alias lt="ls --tree"
-alias la="ls -la"
 alias mkdir="mkdir -p"
 alias mv="mv -v"
 alias cp="cp -rv"
-alias rm="rm -rv"
+alias rm="rm -rvf"
 alias mtar="tar -zcvf" # mtar <archive_compress> <file_list>
 alias utar="tar -zxvf" # utar <archive_decompress> <file_list>
 alias zip="zip -r" # zip <archive_compress> <file_list>
@@ -34,3 +31,6 @@ alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 # neovim
 alias vim="nvim"
 alias svim="sudo nvim"
+
+# cs50
+alias make50='make CC=clang CFLAGS="-fsanitize=signed-integer-overflow -fsanitize=undefined -ggdb3 -O0 -std=c11 -Wall -Werror -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wshadow" LDLIBS="-lcrypt -lcs50 -lm"'

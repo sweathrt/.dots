@@ -4,11 +4,11 @@
 # IF using startx/xinit, this file is sourced (in ./xinitrc)
 
 # set the screen's dpi
-#xrandr --dpi 125
+xrandr --dpi 125
 # use xresources colors/settings on startup
 xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!
 
-autostart=("pipewire" "pipewire-pulse" "picom")
+autostart="pipewire pipewire-pulse picom"
 
 for program in $autostart; do
     pidof -s "$program" || "$program" &
