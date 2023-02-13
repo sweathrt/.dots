@@ -20,4 +20,5 @@ EOF
 #prompt
 
 # vim:ft=zsh:nowrap
+eval "$(starship init zsh)"
 macchina
