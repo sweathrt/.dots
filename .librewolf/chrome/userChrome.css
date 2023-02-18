@@ -20,9 +20,13 @@ by Miguel Avila
 
 /* Font */
 * {
-  font-family: SF Pro Display, sans-serif, monospace;
-  font-weight: 500;
-  font-style: bold;
+  font-family: "SF Pro Display", "Helvetica Neue", sans-serif, monospace;
+  /* font-size: 1.125rem; */
+}
+
+/* font family active tab  */
+tab[selected="true"] {
+  font-weight: 600;
 }
 
 :root {
@@ -165,18 +169,18 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 
 /* Toolbar  */
-#tracking-protection-icon-container,
+/* #tracking-protection-icon-container,
 #urlbar-zoom-button,
-/* #star-button-box, */
+#star-button-box,
 #pageActionButton,
 #pageActionSeparator,
 #tabs-newtab-button,
-/* #back-button, */
+#back-button,
 #PanelUI-button,
-/* #forward-button, */
+#forward-button,
 .tab-secondary-label {
   display: none !important;
-}
+} */
 
 .urlbarView-url {
   color: #dedede !important;
