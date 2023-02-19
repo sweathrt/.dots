@@ -16,6 +16,9 @@ alias mkdir="mkdir -p"
 alias mv="mv -v"
 alias cp="cp -rv"
 alias rm="rm -rvf"
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
 alias mtar="tar -zcvf" # mtar <archive_compress> <file_list>
 alias utar="tar -zxvf" # utar <archive_decompress> <file_list>
 alias zip="zip -r" # zip <archive_compress> <file_list>

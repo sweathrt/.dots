@@ -53,7 +53,7 @@ function M.init()
         -- Set LibreWolf to always map on the tag named "3" on screen 1.
         ruled.client.append_rule {
             rule       = { class = "LibreWolf" },
-            properties = { screen = 1, tag = "3" }
+            properties = { screen = 1, tag = "" }
         }
     end)
 

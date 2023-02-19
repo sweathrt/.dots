@@ -1,23 +1,13 @@
-## ░▀▀█░█▀▀░█░█░█▀▄░█▀▀
-## ░▄▀░░▀▀█░█▀█░█▀▄░█░░
-## ░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀
-##
-## rxyhn's Z-Shell configuration
-## https://github.com/rxyhn
+#!/bin/sh
+[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 
-while read file
-do 
-  source "$ZDOTDIR/$file.zsh"
-done <<-EOF
-aliases
-options
-theme
-EOF
+# source files
+plug "${ZDOTDIR:-$HOME/.config/zsh}/aliases.zsh"
+plug "${ZDOTDIR:-$HOME/.config/zsh}/options.zsh"
 
-#utility
-#plugins
-#keybinds
-#prompt
-
-# vim:ft=zsh:nowrap
-macchina
+# source plugins
+plug "zsh-users/zsh-autosuggestions"
+plug "hlissner/zsh-autopair"
+plug "zap-zsh/vim"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "wintermi/zsh-starship"

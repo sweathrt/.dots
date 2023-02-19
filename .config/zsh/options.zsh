@@ -1,89 +1,73 @@
-##
-## ZSH Options
-##
 
-umask 022
-zmodload zsh/zle
-zmodload zsh/zpty
+autoload -Uz plug
+
+# completions
+autoload -Uz compinit
+zstyle ':completion:*' menu yes select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zmodload zsh/complist
+_comp_options+=(globdots)		# Include hidden files.
+zle_highlight=('paste:none')
+for dump in "${ZDOTDIR:-$HOME}/.zcompdump"(N.mh+24); do
+  compinit
+done
+compinit -C
 
-autoload _vi_search_fix
-autoload -U compinit
-autoload -Uz colors promptinit
-colors
+unsetopt BEEP
+setopt AUTO_CD
+setopt GLOB_DOTS
+setopt NOMATCH
+setopt MENU_COMPLETE
+setopt EXTENDED_GLOB
+setopt INTERACTIVE_COMMENTS
+setopt APPEND_HISTORY
 
-zle -N _vi_search_fix
-zle -N _sudo_command_line
-
-# Completion
-# my stuff
-zstyle :compinstall filename '/home/sweathrt/.config/zsh/.zshrc'
-zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
-# disable sort when completing `git checkout`
-zstyle ':completion:*:git-checkout:*' sort false
-# set descriptions format to enable group support
-zstyle ':completion:*:descriptions' format '[%d]'
-# set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# preview directory's content with exa when completing cd
-#zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-# switch group using `,` and `.`
-zstyle ':fzf-tab:*' switch-group ',' '.'
-
-# History
 HISTFILE="$XDG_STATE_HOME/zsh/history"
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=50000
+SAVEHIST=50000
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+# setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+# setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 
-# Autosuggestion
-ZSH_AUTOSUGGEST_USE_ASYNC="true"
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp root line)
-ZSH_HIGHLIGHT_MAXLENGTH=512
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=$color8,bold"
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
 
-# Set options
-while read -r opt
-do 
-  setopt $opt
-done <<-EOF
-AUTOCD
-AUTO_MENU
-AUTO_PARAM_SLASH
-COMPLETE_IN_WORD
-NO_MENU_COMPLETE
-HASH_LIST_ALL
-ALWAYS_TO_END
-NOTIFY
-NOHUP
-MAILWARN
-INTERACTIVE_COMMENTS
-NOBEEP
-APPEND_HISTORY
-SHARE_HISTORY
-INC_APPEND_HISTORY
-EXTENDED_HISTORY
-HIST_IGNORE_ALL_DUPS
-HIST_IGNORE_SPACE
-HIST_NO_FUNCTIONS
-HIST_EXPIRE_DUPS_FIRST
-HIST_SAVE_NO_DUPS
-HIST_REDUCE_BLANKS
-EOF
+# Colors
+autoload -Uz colors && colors
 
-# Unset options
-while read -r opt
-do 
-  unsetopt $opt
-done <<-EOF
-FLOWCONTROL
-NOMATCH
-CORRECT
-EQUALS
-EOF
+# bindings
+bindkey -s '^x' '^usource ${ZDOTDIR:-$HOME}/.zshrc\n'
+bindkey -M menuselect '?' history-incremental-search-forward
+bindkey -M menuselect '/' history-incremental-search-backward
 
-command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
+# ls colors
+case "$(uname -s)" in
 
-# Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -v
+Darwin)
+	# echo 'Mac OS X'
+	alias ls='ls -G'
+	;;
 
-PROMPT='[%n@%m:%B%~%b]$ '
+Linux)
+	alias ls='ls --color=auto'
+	;;
+
+CYGWIN* | MINGW32* | MSYS* | MINGW*)
+	# echo 'MS Windows'
+	;;
+*)
+	# echo 'Other OS'
+	;;
+esac
+

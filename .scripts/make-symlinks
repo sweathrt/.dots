@@ -9,9 +9,9 @@ config_dir=$HOME/.dots/.config
 # Below is the list of files to be symlinked
 
 # $HOME files
-home_files=".scripts .zprofile"
+home_files=".scripts .zprofile .librewolf"
 # $HOME/.config files
-config_files="awesome dunst fontconfig htop kitty macchina mpd mpv ncmpcpp npm picom ranger rofi user-dirs.dirs wget wireplumber x11 zathura zsh"
+config_files="awesome dunst fontconfig htop kitty macchina mpd mpv ncmpcpp npm picom ranger rofi starship user-dirs.dirs wget wireplumber x11 zathura zsh"
 
 # Create symlinks from $HOME to $HOME/dotfiles
 for file in $home_files; do
