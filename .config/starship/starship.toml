@@ -142,4 +142,4 @@ format = '[ $symbol ($version) ]($style)'
 disabled = true
 time_format = "%R" # Hour:Minute Format
 style = "bg:#282828"
-format = '[ ♥ $time ]($style)'
+format = '[  $time ]($style)'
