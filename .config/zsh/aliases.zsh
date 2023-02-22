@@ -26,7 +26,7 @@ alias uzip="unzip" # uzip <archive_decompress> -d <dir>
 
 # pacman
 alias pacman="sudo pacman"
-alias upgrade="yay -Syyu --devel"
+alias update="yay -Syyu --devel"
 
 # wget
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
